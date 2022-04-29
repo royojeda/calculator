@@ -26,7 +26,7 @@ function operate(operator, a ,b) {
       result = multiply(a, b);
       break;
     case '/':
-      dresult = ivide(a, b);
+      result = divide(a, b);
       break;
     default:
       break;
@@ -34,11 +34,78 @@ function operate(operator, a ,b) {
   return result;
 }
 
+let displayStorage = '';
+const display = document.querySelector('#display');
+
 numbers = document.querySelectorAll('.number');
-display = document.querySelector('#display');
 
 numbers.forEach(number => {
   number.addEventListener('click', () => {
-    display.textContent += number.textContent;
+    if (display.textContent.length !== 10) {
+      displayStorage += number.textContent;
+      display.textContent = displayStorage;
+    }
   });
 });
+
+const operators = document.querySelectorAll('.operator');
+let firstOperand = '';
+let currentOperator = '';
+let secondOperand = '';
+
+operators.forEach(operator => {
+  operator.addEventListener('click', () => {
+    if (displayStorage === '') return;
+    if (firstOperand !== '') {
+      calculate();
+      firstOperand = displayStorage;
+      currentOperator = '';
+    } else {
+      firstOperand = Number(displayStorage);
+    }
+    currentOperator = operator.textContent
+    displayStorage = '';
+  })
+})
+
+const equals = document.querySelector('#equals');
+
+equals.addEventListener('click', () => {
+  if (displayStorage === '') return;
+  calculate();
+})
+
+const clear = document.querySelector('#clear')
+
+clear.addEventListener('click', () => {
+  displayStorage = '';
+  display.textContent = displayStorage;
+  firstOperand = '';
+  currentOperator = '';
+  secondOperand = '';
+})
+
+function calculate() {
+  if (firstOperand === '' || currentOperator === '') return;
+  displayStorage = display.textContent;
+  secondOperand = Number(displayStorage);
+  operationResult = operate(currentOperator, firstOperand, secondOperand);
+  if (operationResult.toString().length > 10) {
+    operationResult = limitResult(operationResult);
+  }
+  displayStorage = operationResult;
+  display.textContent = displayStorage;
+  if (operationResult === Infinity) {
+    firstOperand = '';
+    currentOperator = '';
+    secondOperand = '';
+    displayStorage = '';
+  }
+}
+
+function limitResult(result) {
+  splitResult = result.toString().split('.');
+  decimalPlaces = 9 - splitResult[0].length;
+  return Math.round((result + Number.EPSILON) * 10**decimalPlaces) / 
+    10**decimalPlaces;
+}
