@@ -66,15 +66,15 @@ operators.forEach(operator => {
     }
     currentOperator = operator.textContent
     displayStorage = '';
-  })
-})
+  });
+});
 
 const equals = document.querySelector('#equals');
 
 equals.addEventListener('click', () => {
   if (displayStorage === '') return;
   calculate();
-})
+});
 
 const clear = document.querySelector('#clear')
 
@@ -84,7 +84,7 @@ clear.addEventListener('click', () => {
   firstOperand = '';
   currentOperator = '';
   secondOperand = '';
-})
+});
 
 function calculate() {
   if (firstOperand === '' || currentOperator === '') return;
@@ -96,10 +96,10 @@ function calculate() {
   }
   displayStorage = operationResult;
   display.textContent = displayStorage;
+  firstOperand = '';
+  currentOperator = '';
+  secondOperand = '';
   if (operationResult === Infinity) {
-    firstOperand = '';
-    currentOperator = '';
-    secondOperand = '';
     displayStorage = '';
   }
 }
