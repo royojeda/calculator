@@ -1,5 +1,6 @@
 * {
   font-family: monospace;
+  color: #444444;
 }
 
 body {
@@ -14,63 +15,67 @@ body {
 
 #container {
   margin: 0;
-  padding: 0;
-  border: 1px solid black;
-  height: 800px;
-  width: 600px;
+  padding: 5px;
+  gap: 5px;
+  border: 1px solid #767676;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-}
-
-#upper,
-#middle,
-#lower {
-  margin: 0;
-  border: 1px solid black;
-  width: 550px;
+  border-radius: 2px;
+  background-color: rgb(172, 172, 172);
 }
 
 #upper {
-  height: calc(.25 * 750px);
+  height: 120px;
+  width: 555px;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
+  background-color: #efefef;
+  border: 1px solid #767676;
+  border-radius: 2px;
 }
 
 #middle {
-  height: calc(.15 * 750px);
+  width: 557px;
+  height: 75px;
+  display: flex;
+  gap: 5px;
 }
 
 #lower {
-  height: calc(.6 * 750px);
+  height: 559px;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 559px;
 }
 
-#first-row,
-#second-row,
-#third-row,
-#fourth-row {
-  border: 1px solid black;
-  flex: 1;
-  display: flex;
-}
-
-.first-column,
-.second-column,
-.third-column,
-.fourth-column {
-  border: 1px solid black;
-  flex: 1;
+.cell {
+  height: 136px;
+  aspect-ratio: 1/1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
 }
 
 #upper p {
-  margin: 10px;
-  font-size: 88px;
+  flex: 1;
+  margin: 0;
+  font-size: 92px;
+}
+
+.cell button {
+  height: calc(100% - 2px);
+  aspect-ratio: 1/1;
+  margin: 0px;
+  font-size: 50px;
+}
+
+#middle button {
+  height: 100%;
+  flex: 1;
 }
