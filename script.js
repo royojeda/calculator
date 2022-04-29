@@ -94,7 +94,7 @@ function calculate() {
   if (operationResult.toString().length > 10) {
     operationResult = limitResult(operationResult);
   }
-  displayStorage = operationResult;
+  displayStorage = operationResult.toString();
   display.textContent = displayStorage;
   firstOperand = '';
   currentOperator = '';
@@ -110,3 +110,10 @@ function limitResult(result) {
   return Math.round((result + Number.EPSILON) * 10**decimalPlaces) / 
     10**decimalPlaces;
 }
+
+const backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', () => {
+  if (displayStorage === '') return;
+  displayStorage = displayStorage.slice(0, -1)
+  display.textContent = displayStorage;
+})
