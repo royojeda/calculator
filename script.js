@@ -41,7 +41,8 @@ numbers = document.querySelectorAll('.number');
 
 numbers.forEach(number => {
   number.addEventListener('click', () => {
-    if (display.textContent.length !== 10) {
+    if (displayStorage.length < 10) {
+      if (displayStorage.includes('.') && number.textContent === '.') return;
       displayStorage += number.textContent;
       display.textContent = displayStorage;
     }
