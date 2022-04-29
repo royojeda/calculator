@@ -33,3 +33,12 @@ function operate(operator, a ,b) {
   }
   return result;
 }
+
+numbers = document.querySelectorAll('.number');
+display = document.querySelector('#display');
+
+numbers.forEach(number => {
+  number.addEventListener('click', () => {
+    display.textContent += number.textContent;
+  });
+});
