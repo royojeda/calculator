@@ -1,5 +1,5 @@
 function add(a, b) {
-  return a + b;
+  return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
@@ -107,7 +107,7 @@ function calculate() {
 function limitResult(result) {
   splitResult = result.toString().split('.');
   decimalPlaces = 9 - splitResult[0].length;
-  return Math.round((result + Number.EPSILON) * 10**decimalPlaces) / 
+  return Math.round((result + Number.EPSILON) * 10**decimalPlaces) /
     10**decimalPlaces;
 }
 
